@@ -6,12 +6,38 @@ import { Mail, Phone, MapPin, Github } from "lucide-react";
 export function Contact() {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
   const [sent, setSent] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [errorMsg, setErrorMsg] = useState("");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSent(true);
-    setTimeout(() => setSent(false), 3500);
-    setForm({ name: "", email: "", message: "" });
+    setLoading(true);
+    setSent(false);
+    setErrorMsg("");
+
+    try {
+      const response = await fetch("/api/send-email", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(form),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || "Failed to send message.");
+      }
+
+      setSent(true);
+      setForm({ name: "", email: "", message: "" });
+      setTimeout(() => setSent(false), 3500);
+    } catch (err: any) {
+      setErrorMsg(err.message || "Something went wrong. Please try again.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -176,18 +202,28 @@ export function Contact() {
               />
             </div>
 
+            {errorMsg && (
+              <div 
+                className="text-xs p-3 text-red-500 border border-red-500/20 bg-red-500/5 animate-fade-in"
+                style={{ fontFamily: "JetBrains Mono, monospace" }}
+              >
+                {"> ERROR: "} {errorMsg}
+              </div>
+            )}
+
             <button
               type="submit"
-              className="w-full text-sm font-bold tracking-[0.2em] uppercase py-4 flex items-center justify-center gap-2 transition-all duration-200"
+              disabled={loading}
+              className="w-full text-sm font-bold tracking-[0.2em] uppercase py-4 flex items-center justify-center gap-2 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed select-none outline-none"
               style={{
                 fontFamily: "JetBrains Mono, monospace",
-                background: sent ? "rgba(0,255,65,0.1)" : "#00ff41",
-                color: sent ? "#00ff41" : "#060a06",
-                border: sent ? "1px solid #00ff41" : "1px solid transparent",
-                boxShadow: "0 0 20px rgba(0,255,65,0.2)",
+                background: sent ? "rgba(0,255,65,0.1)" : loading ? "rgba(0,255,65,0.2)" : "#00ff41",
+                color: sent || loading ? "#00ff41" : "#060a06",
+                border: sent || loading ? "1px solid #00ff41" : "1px solid transparent",
+                boxShadow: sent || loading ? "none" : "0 0 20px rgba(0,255,65,0.2)",
               }}
             >
-              {sent ? "Message Sent ✓" : "Send Message"}
+              {loading ? "Sending..." : sent ? "Message Sent ✓" : "Send Message"}
             </button>
           </form>
         </div>
