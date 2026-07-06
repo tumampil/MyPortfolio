@@ -148,7 +148,7 @@ export function Contact() {
           {/* Right: Form */}
           <form onSubmit={handleSubmit} className="space-y-4">
             {[
-              { id: "name", label: "Name", type: "text", placeholder: "Your name" },
+              { id: "name", label: "Name / Company Name", type: "text", placeholder: "Your name or company name" },
               { id: "email", label: "Email", type: "email", placeholder: "your@email.com" },
             ].map(field => (
               <div key={field.id}>
