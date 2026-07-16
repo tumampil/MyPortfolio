@@ -76,7 +76,7 @@ export function Contact() {
             className="text-sm mt-4"
             style={{ fontFamily: "JetBrains Mono, monospace", color: "#3a5a3a" }}
           >
-            {">"} Open to full-time roles, internships, and interesting collaborations.
+            {">"} Open to full-time roles, and interesting collaborations.
           </p>
         </div>
 
@@ -203,7 +203,7 @@ export function Contact() {
             </div>
 
             {errorMsg && (
-              <div 
+              <div
                 className="text-xs p-3 text-red-500 border border-red-500/20 bg-red-500/5 animate-fade-in"
                 style={{ fontFamily: "JetBrains Mono, monospace" }}
               >
