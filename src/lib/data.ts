@@ -113,8 +113,8 @@ export interface SkillGroup {
 }
 
 export const skillGroups: SkillGroup[] = [
-  { icon: Code2, label: "Frontend", items: ["React", "Next.js", "TypeScript", "TailwindCSS", "shadcn/ui", "Flutter"] },
-  { icon: Database, label: "Backend", items: ["Python", "FastAPI", "SQLAlchemy", "Celery", "REST APIs", "PHP", "Dart", "Supabase"] },
+  { icon: Code2, label: "Frontend & Mobile", items: ["Flutter", "React", "Next.js", "TypeScript", "TailwindCSS"] },
+  { icon: Database, label: "Backend & Cloud", items: ["Python", "FastAPI", "Dart", "Supabase", "PostgreSQL"] },
   { icon: Globe, label: "Databases & DevOps", items: ["PostgreSQL", "Redis", "Docker", "Linux", "Nginx", "GitHub"] },
   { icon: Cpu, label: "Hardware & Other", items: ["Arduino", "ESP32", "Raspberry Pi", "RFID", "WebRTC", "Asterisk PBX"] },
 ];

@@ -139,7 +139,8 @@ export function LaptopViewer() {
     const scene = new THREE.Scene();
 
     const camera = new THREE.PerspectiveCamera(40, W / H, 0.1, 100);
-    camera.position.set(0, 1.8, 7);
+    const initZ = W < 480 ? 8.5 : W < 768 ? 7.8 : 7.0;
+    camera.position.set(0, 1.8, initZ);
     camera.lookAt(0, 0.6, 0);
 
     // ── Lights ────────────────────────────────────────────────
@@ -411,6 +412,7 @@ export function LaptopViewer() {
       const nW = mount.clientWidth, nH = mount.clientHeight;
       if (!nW || !nH) return;
       camera.aspect = nW / nH;
+      camera.position.z = nW < 480 ? 8.5 : nW < 768 ? 7.8 : 7.0;
       camera.updateProjectionMatrix();
       renderer.setSize(nW, nH);
     };

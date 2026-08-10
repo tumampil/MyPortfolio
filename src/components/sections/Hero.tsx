@@ -198,7 +198,7 @@ export function Hero({ setActiveSection }: HeroProps) {
           </div>
 
           {/* Center: 3D Laptop */}
-          <div className="hidden lg:block relative" style={{ height: 480 }}>
+          <div className="relative w-full h-[320px] sm:h-[400px] lg:h-[480px] order-last lg:order-none my-4 lg:my-0">
             <LaptopViewer />
             {/* Drag hint */}
             <div
@@ -220,9 +220,9 @@ export function Hero({ setActiveSection }: HeroProps) {
           </div>
 
           {/* Right: Photo + terminal */}
-          <div className="hidden md:flex flex-col gap-4">
+          <div className="flex flex-col gap-4 w-full">
             {/* Profile photo */}
-            <div className="flex gap-4 items-start">
+            <div className="flex flex-col sm:flex-row gap-4 items-start">
               {/* Photo with neon frame */}
               <div className="relative shrink-0">
                 {/* Outer glow */}
@@ -328,7 +328,7 @@ export function Hero({ setActiveSection }: HeroProps) {
                     </span>
                   </div>
                   <div className="text-xs leading-5" style={{ fontFamily: "JetBrains Mono, monospace", color: "#3a5a3a" }}>
-                    {items.slice(0, 5).join(", ")}
+                    {items.join(", ")}
                   </div>
                 </div>
               ))}
