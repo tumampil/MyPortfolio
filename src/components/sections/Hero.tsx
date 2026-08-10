@@ -62,7 +62,7 @@ export function Hero({ setActiveSection }: HeroProps) {
       `}</style>
 
       <div className="relative z-10 max-w-[1750px] mx-auto px-6 lg:px-12 pt-20 pb-8 w-full flex-1 flex flex-col justify-center items-center my-auto">
-        <div className="grid md:grid-cols-2 lg:grid-cols-[1fr_1.1fr_1fr] gap-8 lg:gap-10 items-center w-full my-auto">
+        <div className="grid md:grid-cols-2 lg:grid-cols-[1fr_1.35fr_1fr] gap-8 lg:gap-10 items-center w-full my-auto">
 
           {/* Left: Text */}
           <div>
@@ -198,7 +198,7 @@ export function Hero({ setActiveSection }: HeroProps) {
           </div>
 
           {/* Center: 3D Laptop */}
-          <div className="relative w-full h-[320px] sm:h-[400px] lg:h-[480px] order-last lg:order-none my-4 lg:my-0">
+          <div className="relative w-full h-[360px] sm:h-[440px] lg:h-[540px] order-last lg:order-none my-4 lg:my-0">
             <LaptopViewer />
             {/* Drag hint */}
             <div
