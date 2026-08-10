@@ -88,7 +88,7 @@ export function Contact() {
                 { icon: Mail, label: "Email", value: "jaspertumampil@gmail.com", href: "mailto:jaspertumampil@gmail.com" },
                 { icon: Phone, label: "Phone", value: "(+63) 9930078345", href: "tel:+639930078345" },
                 { icon: MapPin, label: "Address", value: "65H A4 Taniman, Batasan Hills, Quezon City 1126", href: "#" },
-                { icon: Github, label: "GitHub", value: "github.com/jaspertumampil", href: "#" },
+                { icon: Github, label: "GitHub", value: "github.com/tumampil", href: "#" },
               ].map(({ icon: Icon, label, value, href }) => (
                 <a
                   key={label}
