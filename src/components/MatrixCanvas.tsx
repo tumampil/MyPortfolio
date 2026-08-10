@@ -18,29 +18,33 @@ export function MatrixCanvas() {
     resize();
     window.addEventListener("resize", resize);
 
-    const chars = "アイウエオカキクケコサシスセソ01ナニヌネノ234ABCDEF567</>{}[]()=+-*&^%890#@!";
-    const fontSize = 13;
-    const cols = Math.floor(canvas.width / fontSize);
-    const drops: number[] = Array(cols).fill(0).map(() => Math.random() * -50);
+    const chars = "01</>{}[]()=+-*&^%#@!";
+    const fontSize = 14;
+    const cols = Math.floor(canvas.width / (fontSize * 3)); // sparser — every 3rd column
+    const drops: number[] = Array(cols).fill(0).map(() => Math.random() * -80);
 
     let frame: number;
+    let tick = 0;
     const draw = () => {
-      ctx.fillStyle = "rgba(6, 10, 6, 0.06)";
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-      ctx.font = `${fontSize}px "JetBrains Mono", monospace`;
+      tick++;
+      // Only update every 3rd frame for slower speed
+      if (tick % 3 === 0) {
+        ctx.fillStyle = "rgba(6, 10, 6, 0.08)";
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        ctx.font = `${fontSize}px "JetBrains Mono", monospace`;
 
-      for (let i = 0; i < drops.length; i++) {
-        const char = chars[Math.floor(Math.random() * chars.length)];
-        const x = i * fontSize;
-        const y = drops[i] * fontSize;
-        const rand = Math.random();
-        if (rand > 0.99) ctx.fillStyle = "#ffffff";
-        else if (rand > 0.92) ctx.fillStyle = "#00ff41";
-        else if (rand > 0.6) ctx.fillStyle = "#00cc33";
-        else ctx.fillStyle = "#005511";
-        ctx.fillText(char, x, y);
-        if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) drops[i] = 0;
-        drops[i]++;
+        for (let i = 0; i < drops.length; i++) {
+          const char = chars[Math.floor(Math.random() * chars.length)];
+          const x = i * fontSize * 3;
+          const y = drops[i] * fontSize;
+          const rand = Math.random();
+          if (rand > 0.97) ctx.fillStyle = "rgba(0,255,65,0.25)";
+          else if (rand > 0.8) ctx.fillStyle = "rgba(0,204,51,0.15)";
+          else ctx.fillStyle = "rgba(0,85,17,0.12)";
+          ctx.fillText(char, x, y);
+          if (drops[i] * fontSize > canvas.height && Math.random() > 0.985) drops[i] = 0;
+          drops[i]++;
+        }
       }
       frame = requestAnimationFrame(draw);
     };
@@ -56,7 +60,7 @@ export function MatrixCanvas() {
     <canvas
       ref={canvasRef}
       className="absolute inset-0 w-full h-full"
-      style={{ display: "block" }}
+      style={{ display: "block", opacity: 0.35 }}
     />
   );
 }

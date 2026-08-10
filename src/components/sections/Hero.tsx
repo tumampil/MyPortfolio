@@ -13,7 +13,7 @@ interface HeroProps {
 
 export function Hero({ setActiveSection }: HeroProps) {
   return (
-    <section id="about" className="relative min-h-screen flex flex-col justify-center overflow-hidden" style={{ background: "#060a06" }}>
+    <section id="about" className="relative min-h-screen flex flex-col justify-between overflow-x-hidden" style={{ background: "#060a06" }}>
       <MatrixCanvas />
 
       {/* Grid overlay */}
@@ -61,8 +61,8 @@ export function Hero({ setActiveSection }: HeroProps) {
         }
       `}</style>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6 pt-28 pb-16 w-full">
-        <div className="grid md:grid-cols-2 lg:grid-cols-[1fr_1.1fr_1fr] gap-8 lg:gap-6 items-center">
+      <div className="relative z-10 max-w-7xl mx-auto px-6 pt-24 pb-12 w-full flex-1 flex flex-col justify-between">
+        <div className="grid md:grid-cols-2 gap-12 lg:gap-20 items-center">
 
           {/* Left: Text */}
           <div>
@@ -197,27 +197,6 @@ export function Hero({ setActiveSection }: HeroProps) {
             </div>
           </div>
 
-          {/* Center: 3D Laptop */}
-          <div className="hidden lg:block relative" style={{ height: 500 }}>
-            <LaptopViewer />
-            {/* Drag hint */}
-            <div
-              className="absolute bottom-2 left-1/2 -translate-x-1/2 flex items-center gap-2 px-4 py-2 pointer-events-none"
-              style={{
-                border: "1px solid rgba(0,255,65,0.15)",
-                background: "rgba(5,9,8,0.6)",
-                backdropFilter: "blur(8px)",
-              }}
-            >
-              <Wifi size={11} style={{ color: "#00ff41" }} />
-              <span
-                className="text-xs tracking-widest"
-                style={{ fontFamily: "JetBrains Mono, monospace", color: "rgba(0,255,65,0.5)" }}
-              >
-                DRAG TO ROTATE
-              </span>
-            </div>
-          </div>
 
           {/* Right: Photo + terminal */}
           <div className="hidden md:flex flex-col gap-4">
@@ -333,6 +312,28 @@ export function Hero({ setActiveSection }: HeroProps) {
                 </div>
               ))}
             </div>
+          </div>
+        </div>
+
+        {/* 3D Laptop — full-width centered below */}
+        <div className="hidden lg:block relative mt-8 mx-auto" style={{ maxWidth: 700, height: 480 }}>
+          <LaptopViewer />
+          {/* Drag hint */}
+          <div
+            className="absolute bottom-2 left-1/2 -translate-x-1/2 flex items-center gap-2 px-4 py-2 pointer-events-none"
+            style={{
+              border: "1px solid rgba(0,255,65,0.15)",
+              background: "rgba(5,9,8,0.6)",
+              backdropFilter: "blur(8px)",
+            }}
+          >
+            <Wifi size={11} style={{ color: "#00ff41" }} />
+            <span
+              className="text-xs tracking-widest"
+              style={{ fontFamily: "JetBrains Mono, monospace", color: "rgba(0,255,65,0.5)" }}
+            >
+              DRAG TO ROTATE
+            </span>
           </div>
         </div>
 
