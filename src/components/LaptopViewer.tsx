@@ -262,7 +262,7 @@ export function LaptopViewer() {
     // SCREEN GROUP (pivot at hinge)
     const sg = new THREE.Group();
     sg.position.set(0, 0.065, -1.1);
-    sg.rotation.x = 0.27;
+    sg.rotation.x = 0.04;
 
     // Screen lid
     const lid = new THREE.Mesh(new THREE.BoxGeometry(3.5, 2.25, 0.09), bodyMat);

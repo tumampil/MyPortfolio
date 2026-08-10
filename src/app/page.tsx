@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Nav } from "@/components/sections/Nav";
 import { Hero } from "@/components/sections/Hero";
 import { Projects } from "@/components/sections/Projects";
@@ -8,9 +8,12 @@ import { Experience } from "@/components/sections/Experience";
 import { Contact } from "@/components/sections/Contact";
 import { Footer } from "@/components/sections/Footer";
 
+const SECTIONS = ["about", "projects", "experience", "contact"];
+
 export default function Home() {
   const [activeSection, setActiveSection] = useState("about");
   const [scrolled, setScrolled] = useState(false);
+  const isCooldownRef = useRef(false);
 
   useEffect(() => {
     const mainEl = document.getElementById("main-content");
@@ -18,6 +21,40 @@ export default function Home() {
       mainEl.scrollTo({ top: 0, behavior: "instant" });
     }
     setScrolled(false);
+  }, [activeSection]);
+
+  useEffect(() => {
+    const mainEl = document.getElementById("main-content");
+    if (!mainEl) return;
+
+    const handleWheel = (e: WheelEvent) => {
+      if (isCooldownRef.current) return;
+
+      const { scrollTop, scrollHeight, clientHeight } = mainEl;
+      const isAtBottom = scrollTop + clientHeight >= scrollHeight - 30;
+      const isAtTop = scrollTop <= 30;
+
+      const currentIndex = SECTIONS.indexOf(activeSection);
+
+      if (e.deltaY > 40 && isAtBottom && currentIndex < SECTIONS.length - 1) {
+        isCooldownRef.current = true;
+        setActiveSection(SECTIONS[currentIndex + 1]);
+        setTimeout(() => {
+          isCooldownRef.current = false;
+        }, 700);
+      } else if (e.deltaY < -40 && isAtTop && currentIndex > 0) {
+        isCooldownRef.current = true;
+        setActiveSection(SECTIONS[currentIndex - 1]);
+        setTimeout(() => {
+          isCooldownRef.current = false;
+        }, 700);
+      }
+    };
+
+    mainEl.addEventListener("wheel", handleWheel, { passive: true });
+    return () => {
+      mainEl.removeEventListener("wheel", handleWheel);
+    };
   }, [activeSection]);
 
   return (
