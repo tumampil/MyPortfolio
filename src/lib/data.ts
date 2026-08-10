@@ -38,6 +38,22 @@ export const projects = [
       "Full-stack implementation with Next.js frontend",
     ],
   },
+  {
+    id: "03",
+    name: "Blog Forum App",
+    tag: "Mobile Blog Platform",
+    year: "2026",
+    description:
+      "Cross-platform mobile blog forum application built with Flutter and Supabase. Features user authentication, CRUD operations for posts and comments, image uploads with gallery viewer, and paginated feed.",
+    tech: ["Flutter", "Dart", "Supabase", "Provider", "GoRouter"],
+    highlights: [
+      "Implemented Supabase Auth with email/password sign-up and login",
+      "Built full CRUD for posts and comments with image attachments",
+      "Designed paginated feed with pull-to-refresh and multi-image gallery",
+      "Managed app state using Provider pattern with ChangeNotifier",
+    ],
+    link: "https://github.com/tumampil/flutterProjects",
+  },
 ];
 
 // ─── Experience ───────────────────────────────────────────────────────────────
@@ -97,8 +113,8 @@ export interface SkillGroup {
 }
 
 export const skillGroups: SkillGroup[] = [
-  { icon: Code2, label: "Frontend", items: ["React", "Next.js", "TypeScript", "TailwindCSS", "shadcn/ui"] },
-  { icon: Database, label: "Backend", items: ["Python", "FastAPI", "SQLAlchemy", "Celery", "REST APIs", "PHP"] },
+  { icon: Code2, label: "Frontend", items: ["React", "Next.js", "TypeScript", "TailwindCSS", "shadcn/ui", "Flutter"] },
+  { icon: Database, label: "Backend", items: ["Python", "FastAPI", "SQLAlchemy", "Celery", "REST APIs", "PHP", "Dart", "Supabase"] },
   { icon: Globe, label: "Databases & DevOps", items: ["PostgreSQL", "Redis", "Docker", "Linux", "Nginx", "GitHub"] },
   { icon: Cpu, label: "Hardware & Other", items: ["Arduino", "ESP32", "Raspberry Pi", "RFID", "WebRTC", "Asterisk PBX"] },
 ];

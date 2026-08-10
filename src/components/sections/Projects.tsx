@@ -42,7 +42,7 @@ export function Projects() {
             className="hidden md:block text-right text-xs leading-6"
             style={{ fontFamily: "JetBrains Mono, monospace", color: "#2a4a2a" }}
           >
-            <div style={{ color: "#00ff41" }}>02 projects</div>
+            <div style={{ color: "#00ff41" }}>03 projects</div>
             <div>production</div>
             <div>OJT work</div>
           </div>
@@ -97,11 +97,21 @@ export function Projects() {
                     {project.name}
                   </h3>
                 </div>
-                <ExternalLink
-                  size={15}
-                  className="shrink-0 mt-1 transition-colors duration-200"
-                  style={{ color: active === project.id ? "#00ff41" : "#2a4a2a" }}
-                />
+                {"link" in project && project.link ? (
+                  <a href={project.link} target="_blank" rel="noopener noreferrer">
+                    <ExternalLink
+                      size={15}
+                      className="shrink-0 mt-1 transition-colors duration-200"
+                      style={{ color: active === project.id ? "#00ff41" : "#2a4a2a" }}
+                    />
+                  </a>
+                ) : (
+                  <ExternalLink
+                    size={15}
+                    className="shrink-0 mt-1 transition-colors duration-200"
+                    style={{ color: active === project.id ? "#00ff41" : "#2a4a2a" }}
+                  />
+                )}
               </div>
 
               <p
