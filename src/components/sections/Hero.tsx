@@ -1,9 +1,10 @@
 "use client";
 
-import { ArrowRight, ChevronDown } from "lucide-react";
+import { ArrowRight, ChevronDown, Wifi } from "lucide-react";
 import { MatrixCanvas } from "@/components/MatrixCanvas";
 import { TypingText } from "@/components/TypingText";
 import { ImageWithFallback } from "@/components/ImageWithFallback";
+import { LaptopViewer } from "@/components/LaptopViewer";
 import { skillGroups } from "@/lib/data";
 
 interface HeroProps {
@@ -44,8 +45,24 @@ export function Hero({ setActiveSection }: HeroProps) {
         }}
       />
 
+      {/* Scanline sweep animation */}
+      <div
+        className="absolute left-0 right-0 h-px pointer-events-none"
+        style={{
+          background: "linear-gradient(to right, transparent, rgba(0,255,65,0.4), transparent)",
+          animation: "scanline-move 8s linear infinite",
+          zIndex: 1,
+        }}
+      />
+      <style>{`
+        @keyframes scanline-move {
+          0%{transform:translateY(-100%)}
+          100%{transform:translateY(100vh)}
+        }
+      `}</style>
+
       <div className="relative z-10 max-w-7xl mx-auto px-6 pt-28 pb-16 w-full">
-        <div className="grid md:grid-cols-2 gap-12 lg:gap-20 items-center">
+        <div className="grid md:grid-cols-2 lg:grid-cols-[1fr_1.1fr_1fr] gap-8 lg:gap-6 items-center">
 
           {/* Left: Text */}
           <div>
@@ -88,6 +105,7 @@ export function Hero({ setActiveSection }: HeroProps) {
                     "VoIP & WebRTC Engineer",
                     "React / Next.js Developer",
                     "FastAPI & Python Backend Dev",
+                    "Flutter & Mobile Dev",
                   ]}
                 />
               </span>
@@ -99,7 +117,7 @@ export function Hero({ setActiveSection }: HeroProps) {
             >
               Computer Engineering graduate with hands-on OJT experience building full-stack web apps,
               VoIP systems, and real-time dashboards. Proficient in React/Next.js, Python/FastAPI,
-              Asterisk PBX, and Docker.
+              Flutter/Supabase, Asterisk PBX, and Docker.
             </p>
 
             <div className="flex flex-wrap gap-4">
@@ -153,7 +171,7 @@ export function Hero({ setActiveSection }: HeroProps) {
               style={{ borderTop: "1px solid rgba(0,255,65,0.1)" }}
             >
               {[
-                { value: "2", label: "Live Projects" },
+                { value: "3", label: "Live Projects" },
                 { value: "5mo", label: "OJT @ Kaizo" },
                 { value: "TUP", label: "Manila Grad" },
               ].map(({ value, label }, i) => (
@@ -176,6 +194,28 @@ export function Hero({ setActiveSection }: HeroProps) {
                   </div>
                 </div>
               ))}
+            </div>
+          </div>
+
+          {/* Center: 3D Laptop */}
+          <div className="hidden lg:block relative" style={{ height: 500 }}>
+            <LaptopViewer />
+            {/* Drag hint */}
+            <div
+              className="absolute bottom-2 left-1/2 -translate-x-1/2 flex items-center gap-2 px-4 py-2 pointer-events-none"
+              style={{
+                border: "1px solid rgba(0,255,65,0.15)",
+                background: "rgba(5,9,8,0.6)",
+                backdropFilter: "blur(8px)",
+              }}
+            >
+              <Wifi size={11} style={{ color: "#00ff41" }} />
+              <span
+                className="text-xs tracking-widest"
+                style={{ fontFamily: "JetBrains Mono, monospace", color: "rgba(0,255,65,0.5)" }}
+              >
+                DRAG TO ROTATE
+              </span>
             </div>
           </div>
 
@@ -262,7 +302,8 @@ export function Hero({ setActiveSection }: HeroProps) {
                   <div className="pl-4"><span style={{ color: "rgba(0,255,65,0.55)" }}>school</span><span style={{ color: "#fff" }}>:</span> <span style={{ color: "#fde68a" }}>&quot;TUP Manila&quot;</span><span style={{ color: "#fff" }}>,</span></div>
                   <div className="pl-4"><span style={{ color: "rgba(0,255,65,0.55)" }}>stack</span><span style={{ color: "#fff" }}>: [</span></div>
                   <div className="pl-8"><span style={{ color: "#fde68a" }}>&quot;Next.js&quot;</span><span style={{ color: "#fff" }}>, </span><span style={{ color: "#fde68a" }}>&quot;FastAPI&quot;</span><span style={{ color: "#fff" }}>,</span></div>
-                  <div className="pl-8"><span style={{ color: "#fde68a" }}>&quot;PostgreSQL&quot;</span><span style={{ color: "#fff" }}>, </span><span style={{ color: "#fde68a" }}>&quot;Docker&quot;</span></div>
+                  <div className="pl-8"><span style={{ color: "#fde68a" }}>&quot;PostgreSQL&quot;</span><span style={{ color: "#fff" }}>, </span><span style={{ color: "#fde68a" }}>&quot;Docker&quot;</span><span style={{ color: "#fff" }}>,</span></div>
+                  <div className="pl-8"><span style={{ color: "#fde68a" }}>&quot;Flutter&quot;</span><span style={{ color: "#fff" }}>, </span><span style={{ color: "#fde68a" }}>&quot;Supabase&quot;</span></div>
                   <div className="pl-4"><span style={{ color: "#fff" }}>],</span></div>
                   <div className="pl-4"><span style={{ color: "rgba(0,255,65,0.55)" }}>available</span><span style={{ color: "#fff" }}>:</span> <span style={{ color: "#00ff41" }}>true</span></div>
                   <div><span style={{ color: "#fff" }}>{"}"}</span></div>
@@ -287,7 +328,7 @@ export function Hero({ setActiveSection }: HeroProps) {
                     </span>
                   </div>
                   <div className="text-xs leading-5" style={{ fontFamily: "JetBrains Mono, monospace", color: "#3a5a3a" }}>
-                    {items.slice(0, 4).join(", ")}
+                    {items.slice(0, 5).join(", ")}
                   </div>
                 </div>
               ))}
