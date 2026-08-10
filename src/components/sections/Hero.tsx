@@ -61,8 +61,8 @@ export function Hero({ setActiveSection }: HeroProps) {
         }
       `}</style>
 
-      <div className="relative z-10 max-w-[1750px] mx-auto px-6 lg:px-12 pt-24 pb-10 w-full flex-1 flex flex-col justify-between">
-        <div className="grid md:grid-cols-2 lg:grid-cols-[1fr_1.1fr_1fr] gap-8 lg:gap-10 items-center">
+      <div className="relative z-10 max-w-[1750px] mx-auto px-6 lg:px-12 pt-20 pb-8 w-full flex-1 flex flex-col justify-center items-center my-auto">
+        <div className="grid md:grid-cols-2 lg:grid-cols-[1fr_1.1fr_1fr] gap-8 lg:gap-10 items-center w-full my-auto">
 
           {/* Left: Text */}
           <div>
@@ -337,7 +337,7 @@ export function Hero({ setActiveSection }: HeroProps) {
         </div>
 
         {/* Scroll hint */}
-        <div className="flex justify-center mt-12">
+        <div className="flex justify-center mt-6">
           <button
             onClick={() => setActiveSection("projects")}
             className="flex flex-col items-center gap-2 transition-colors"
